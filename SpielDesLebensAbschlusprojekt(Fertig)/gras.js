@@ -10,11 +10,9 @@ class GrasTemplate {
     platziereSelbstInMatrix() {
         matrix[this.zeile][this.spalte] = 1;
     };
-
     spielzug() {
         this.energie++
-        if (this.energie > 50) {
-            console.log(window.glob);
+        if (this.energie > 5 * window.glob) {
             this.pflanzNeueGrasZelle()
             this.energie = 0;
         }
