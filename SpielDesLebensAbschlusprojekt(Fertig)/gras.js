@@ -12,9 +12,9 @@ class GrasTemplate {
     };
 
     spielzug() {
-        console.log(window.glob);
         this.energie++
-        if (this.energie > 5) {
+        if (this.energie > 50) {
+            console.log(window.glob);
             this.pflanzNeueGrasZelle()
             this.energie = 0;
         }
