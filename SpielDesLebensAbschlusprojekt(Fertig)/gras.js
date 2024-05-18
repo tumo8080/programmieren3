@@ -1,14 +1,10 @@
-class GrasTemplate {
-    zeile;
-    spalte;
-    energie = 0;
-    constructor(z,s) {
+class GrasTemplate extends Template {
+    constructor(z, s, energie) {
+        super(z, s, energie);
         this.zeile = z;
         this.spalte = s;
-        this.platziereSelbstInMatrix();
-    };
-    platziereSelbstInMatrix() {
-        matrix[this.zeile][this.spalte] = 1;
+        this.energie = 0;
+        this.platziereSelbstInMatrix(1);
     };
     spielzug() {
         this.energie++

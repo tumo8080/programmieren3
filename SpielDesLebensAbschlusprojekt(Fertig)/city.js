@@ -1,17 +1,12 @@
-class CityTemplate {
-    zeile;
-    spalte;
-    energie = 0;
-    lebensEnergie = 0;
-    constructor(z,s) {
+class CityTemplate extends Template {
+    constructor(z, s, energie) {
+        super(z, s, energie);
         this.zeile = z;
         this.spalte = s;
-        this.platziereSelbstInMatrix();
+        this.energie = 0;
+        this.lebensEnergie = 0;
+        this.platziereSelbstInMatrix(3);
     };
-    platziereSelbstInMatrix() {
-        matrix[this.zeile][this.spalte] = 3;
-    };
-
     spielzug() {
         this.energie++
         if (this.energie > 100) {

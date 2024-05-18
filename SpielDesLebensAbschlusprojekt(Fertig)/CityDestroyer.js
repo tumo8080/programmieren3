@@ -1,15 +1,11 @@
-class CityDestroyerTemplate {
-    zeile;
-    spalte;
-    energie = 0;
-    lebensEnergie = 0;
-    constructor(z,s) {
+class CityDestroyerTemplate extends Template {
+    constructor(z, s, energie) {
+        super(z, s, energie);
         this.zeile = z;
         this.spalte = s;
-        this.platziereSelbstInMatrix();
-    };
-    platziereSelbstInMatrix() {
-        matrix[this.zeile][this.spalte] = 4;
+        this.energie = 0;
+        this.lebensEnergie = 0;
+        this.platziereSelbstInMatrix(4);
     };
     machSchrittNachVorne() {
         // 1. Scan die Felder um dich herum und
