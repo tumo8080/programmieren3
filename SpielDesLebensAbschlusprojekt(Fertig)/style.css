@@ -1,5 +1,24 @@
 body{
     background-color: rgb(41, 38, 38);
-    color: ivory;
-    
+    color: ivory;   
+    font-family: sans-serif;
+}
+
+main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+}
+
+#variableContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 20px;
+}
+
+.inputContainer {
+    display: flex;
+    margin: 5px;
 }

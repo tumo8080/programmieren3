@@ -1,5 +1,4 @@
 function erstelleMatrix() {
-
     let matrixTemp = [];
     for (let zeile = 0; zeile < XY; zeile++) {
         for (let spalte = 0; spalte < XY; spalte++) {

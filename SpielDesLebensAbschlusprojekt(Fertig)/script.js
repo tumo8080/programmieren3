@@ -16,8 +16,6 @@ let ObjekteArray = [];
 let MowingMachineArray = [];
 
 function setup() {
-
-
     createCanvas(canvasXY, canvasXY);
     frameRate(60);
     erstelleMatrix();

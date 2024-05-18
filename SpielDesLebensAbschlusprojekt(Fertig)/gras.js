@@ -8,7 +8,7 @@ class GrasTemplate extends Template {
     };
     spielzug() {
         this.energie++
-        if (this.energie > 5 * window.globSpeed) {
+        if (this.energie > 5 * (window.globSpeed === window.globGrasSpeed? window.globSpeed : window.globGrasSpeed)) {
             this.pflanzNeueGrasZelle()
             this.energie = 0;
         }

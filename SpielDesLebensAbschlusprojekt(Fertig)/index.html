@@ -9,6 +9,12 @@
 <body>
     <script type='text/javascript' > 
         top.globSpeed = 1;
+        top.globGrasSpeed = 1;
+
+        function changeGlobSpeed(value) {
+            window.globSpeed = value;
+            window.globGrasSpeed = value;
+        }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
     <script src="ClassTemplate.js"></script>
@@ -20,7 +26,18 @@
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 
-    <input type="range" value="1" max="5" min="0" step="0.01" onchange="window.glob = Number(this.value)" />
+    <div id="variableContainer">
+        <div class="inputContainer">
+            Global speed: &nbsp;
+            <input type="range" value="1" max="5" min="0" step="0.01" onchange="changeGlobSpeed(Number(this.value))" />
+            5
+        </div>
+        <div class="inputContainer">
+            Gras speed: &nbsp;&nbsp;&nbsp;
+            <input type="range" value="1" max="5" min="0" step="0.01" onchange="window.globGrasSpeed = Number(this.value)" />
+            5
+        </div>
+    </div>
 </body>
 
 </html>
