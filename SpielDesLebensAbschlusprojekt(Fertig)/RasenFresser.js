@@ -2,7 +2,7 @@ class MowingMachineTemplate {
     zeile;
     spalte;
     energie = 30;
-    constructor(z,s) {
+    constructor(z, s) {
         this.zeile = z;
         this.spalte = s;
         this.platziereSelbstInMatrix();
@@ -32,7 +32,7 @@ class MowingMachineTemplate {
     };
     spielzug() {
 
-        if (this.energie > 60) {
+        if (this.energie > 60 * window.globSpeed) {
             this.energie = 30;
             this.pflanzeNeuenRasenFresser();
         } else if (this.energie > 0) {
@@ -45,7 +45,7 @@ class MowingMachineTemplate {
             }
         } else {
             matrix[this.zeile][this.spalte] = 0;
-            löschObjektAusObjekteArray(this.zeile,this.spalte);
+            löschObjektAusObjekteArray(this.zeile, this.spalte);
         }
         //this.machSchrittNachVorne();
     };
@@ -56,10 +56,10 @@ class MowingMachineTemplate {
         if (grasFelder.length > 0) {
             let grasFeld = grasFelder[0];
 
-            löschObjektAusObjekteArray(grasFeld[0],grasFeld[1]);
+            löschObjektAusObjekteArray(grasFeld[0], grasFeld[1]);
 
             let neueGrasZelle = new MowingMachineTemplate(grasFeld[0], grasFeld[1]);
-            
+
             ObjekteArray.push(neueGrasZelle);
 
         }
