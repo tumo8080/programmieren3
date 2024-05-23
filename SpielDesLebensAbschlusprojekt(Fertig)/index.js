@@ -1,12 +1,13 @@
 const express = require("express");
+
 const app = express();
+const port = 3000;
 
-app.get("/", (req, res) => {
-   res.send("Hello world");
-});
+app.use(express.static('public'));
+app.use(express.json());
 
-app.listen(3000, function(){
-   console.log("Example is running on port 3000");
+app.listen(port, () => {
+    console.log(`Server läuft auf http://localhost:${port}`);
 });
 
 app.get("/user/:name", function(req, res){
@@ -17,4 +18,8 @@ app.get("/user/:name", function(req, res){
 app.get("/google/:search", function(req, res){
     const search = req.params.search;
     res.redirect(`https://www.google.com/search?q=${search}`);
+});
+
+app.get('*', function(req, res){
+    res.status(404).send("what??? There's something wrong...");
 });
