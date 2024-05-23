@@ -1,8 +1,3 @@
-// Hacks:
-
-// Command + K + C bzw. Command + K + U = In Kommentar/Code umwandeln
-// Option + Shift + F = Dokument formatieren
-
 let canvasXY = 900;
 let XY = 100;
 let matrix = [];
