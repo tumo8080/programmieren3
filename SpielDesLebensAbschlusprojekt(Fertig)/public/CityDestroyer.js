@@ -39,7 +39,7 @@ class CityDestroyerTemplate extends Template {
             this.machSchrittNachVorne();
 
             if (this.findeCityFelder().length) {
-                console.log(22222);
+                // console.log(22222);
                 this.energie--;
             }
         }
@@ -64,7 +64,7 @@ class CityDestroyerTemplate extends Template {
             let spalte2 = Math.floor(Math.random() * (100));
             let zeile2 = Math.floor(Math.random() * (100));
 
-            console.log(zeile2, spalte2);
+            // console.log(zeile2, spalte2);
 
             if (matrix[zeile2][spalte2] != 2) {
                 this.zeile = zeile2;
@@ -73,7 +73,7 @@ class CityDestroyerTemplate extends Template {
                 matrix[this.zeile][this.spalte] = 4;
                 break;
             } else {
-                console.log(1);
+                // console.log(1);
             }
         }
        

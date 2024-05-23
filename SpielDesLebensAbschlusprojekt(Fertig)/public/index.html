@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=1920, initial-scale=1.0">
     <title>TUMO PR2 Rasenmäher</title>
 </head>
+
 <body>
-    <script type='text/javascript' > 
-        const globSpeedHandler = document.getElementById('globSpeedHandler');
-        const grasSpeedHandler = document.getElementById('grasSpeedHandler');
+    <script type='text/javascript'>
+        document.addEventListener('DOMContentLoaded', function () {
+            const globSpeedHandler = document.getElementById('globSpeedHandler');
+            const grasSpeedHandler = document.getElementById('grasSpeedHandler');
+            const citySpeedHandler = document.getElementById('citySpeedHandler');
 
-        top.globSpeed = 1;
-        top.globGrasSpeed = 1;
+            window.globSpeed = 1;
+            window.globGrasSpeed = 1;
+            window.globCitySpeed = 1;
 
-        function changeGlobSpeed(value) {
-            window.globSpeed = value;
-            window.globGrasSpeed = value;
+            function changeGlobSpeed(value) {
+                window.globSpeed = value;
+                window.globGrasSpeed = value;
+                window.globCitySpeed = value;
 
-            grasSpeedHandler.value = value;
-        }
+                console.log(value);
+
+                if (grasSpeedHandler) {
+                    grasSpeedHandler.value = value;
+                }
+                if (citySpeedHandler) {
+                    citySpeedHandler.value = value;
+                }
+            }
+
+            globSpeedHandler.addEventListener('onchange', changeGlobSpeed);
+        });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
     <script src="ClassTemplate.js"></script>
@@ -34,12 +50,19 @@
     <div id="variableContainer">
         <div class="inputContainer">
             Global speed: &nbsp;
-            <input id="globSpeedHandler" type="range" value="1" max="5" min="0" step="0.01" onchange="changeGlobSpeed(Number(this.value))" />
+            <input id="globSpeedHandler" type="range" value="1" max="5" min=".01" step="0.01" />
             5
         </div>
         <div class="inputContainer">
             Gras speed: &nbsp;&nbsp;&nbsp;
-            <input id="grasSpeedHandler" type="range" value="1" max="5" min="0" step="0.01" onchange="window.globGrasSpeed = Number(this.value)" />
+            <input id="grasSpeedHandler" type="range" value="1" max="5" min=".01" step="0.01"
+                onchange="window.globGrasSpeed = Number(this.value)" />
+            5
+        </div>
+        <div class="inputContainer">
+            City speed: &nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="citySpeedHandler" type="range" value="1" max="5" min=".01" step="0.01"
+                onchange="window.globCitySpeed = Number(this.value)" />
             5
         </div>
     </div>
