@@ -1,3 +1,5 @@
+const { matrix } = require("./script");
+
 class Template {
     constructor(z, s, energie) {
         this.zeile = z;

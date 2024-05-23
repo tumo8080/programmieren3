@@ -1,4 +1,5 @@
 const Template = require("./classTemplate");
+const { XY, RandomNumber2, matrix, löschObjektAusObjekteArray } = require("./script");
 
 class CityDestroyerTemplate extends Template {
     constructor(z, s, energie) {

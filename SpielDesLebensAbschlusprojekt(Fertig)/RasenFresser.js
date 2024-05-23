@@ -1,3 +1,5 @@
+const { XY, RandomNumber2, matrix, löschObjektAusObjekteArray } = require("./script");
+
 class RasenFresserTemplate {
     zeile;
     spalte;

@@ -1,4 +1,5 @@
 const Template = require("./classTemplate");
+const { XY, matrix } = require("./script");
 
 class GrasTemplate extends Template {
     constructor(z, s, energie) {
