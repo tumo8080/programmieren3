@@ -9,7 +9,7 @@ class CityTemplate extends Template {
     };
     spielzug() {
         this.energie++
-        if (this.energie > 100) {
+        if (this.energie > 100 * (window.globSpeed === window.globCity? window.globSpeed : window.globCity)) {
             
             this.pflanzneueCity()
             this.energie = 0;
