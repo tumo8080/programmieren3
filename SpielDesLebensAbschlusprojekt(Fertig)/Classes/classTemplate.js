@@ -1,4 +1,4 @@
-const { matrix } = require("./script");
+let { matrix } = require("../handleMatrix");
 
 class Template {
     constructor(z, s, energie) {

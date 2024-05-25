@@ -1,12 +1,32 @@
-const { XY, RandomNumber1, RandomNumber2, matrix, löschObjektAusObjekteArray, draw, setup, anzahlGras } = require("./script.js")
-const City = require("./city.js");
-const CityDestroyer = require("./cityDestroyer.js");
-const Grass = require("./gras.js");
-const RasenFresser = require("./RasenFresser.js");
+// process.stdout.write()
+// process.stdout.write(`\x1b[${number}A`)
 
-console.log(new City(1, 1, 1));
-console.log(new CityDestroyer(1, 1, 1));
-console.log(new Grass(1, 1, 1));
-console.log(new RasenFresser(1, 1));
+let canvasXY = 900;
+let XY = 100; // 100
+let matrix = [];
+let RandomNumber1;
+let RandomNumber2;
 
-setInterval(console.log(matrix), 1000);
+let anzahlGras = 2;
+let ObjekteArray = [];
+
+function löschObjektAusObjektArray(zeile, spalte) {
+    // console.log(zeile, spalte);
+    let index = ObjekteArray.findIndex(function (grasObjekt) {
+        if (grasObjekt.zeile === zeile && grasObjekt.spalte === spalte) {
+            return true;
+        } else return false;
+    });
+    ObjekteArray.splice(index, 1);
+}
+
+module.exports = {
+    canvasXY,
+    XY,
+    matrix,
+    RandomNumber1,
+    RandomNumber2,
+    anzahlGras,
+    ObjekteArray,
+    löschObjektAusObjektArray
+};

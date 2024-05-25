@@ -1,5 +1,5 @@
 const Template = require("./classTemplate");
-const { XY, matrix } = require("./script");
+let { XY, matrix, ObjekteArray } = require("../handleMatrix");
 
 class GrasTemplate extends Template {
     constructor(z, s, energie) {
@@ -11,7 +11,7 @@ class GrasTemplate extends Template {
     };
     spielzug() {
         this.energie++
-        if (this.energie > 5 * (window.globSpeed === window.globGrasSpeed? window.globSpeed : window.globGrasSpeed)) {
+        if (this.energie > 5) {
             this.pflanzNeueGrasZelle()
             this.energie = 0;
         }

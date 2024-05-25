@@ -1,5 +1,5 @@
 const Template = require("./classTemplate");
-const { XY, RandomNumber2, matrix, löschObjektAusObjekteArray } = require("./script");
+let { XY, RandomNumber2, ObjekteArray, matrix, löschObjektAusObjektArray } = require("../handleMatrix");
 
 class CityDestroyerTemplate extends Template {
     constructor(z, s, energie) {
@@ -22,7 +22,7 @@ class CityDestroyerTemplate extends Template {
             matrix[this.zeile][this.spalte] = 1;
             ObjekteArray.push(new GrasTemplate(this.zeile,this.spalte));
 
-            löschObjektAusObjekteArray(CityFeld[0], CityFeld[1]);
+            löschObjektAusObjektArray(CityFeld[0], CityFeld[1]);
             this.zeile = CityFeld[0];
             this.spalte = CityFeld[1];
 
@@ -37,7 +37,7 @@ class CityDestroyerTemplate extends Template {
             ObjekteArray.push(new GrasTemplate(this.zeile,this.spalte));
 
             this.machEinSchrit();
-            // löschObjektAusObjekteArray(this.zeile,this.spalte);
+            // löschObjektAusObjektArray(this.zeile,this.spalte);
         } else {
             this.machSchrittNachVorne();
 

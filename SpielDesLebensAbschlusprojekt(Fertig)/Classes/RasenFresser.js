@@ -1,4 +1,10 @@
-const { XY, RandomNumber2, matrix, löschObjektAusObjekteArray } = require("./script");
+let {
+    XY,
+    matrix,
+    RandomNumber2,
+    ObjekteArray,
+    löschObjektAusObjektArray,
+} = require("../handleMatrix");
 
 class RasenFresserTemplate {
     zeile;
@@ -23,7 +29,7 @@ class RasenFresserTemplate {
 
             matrix[this.zeile][this.spalte] = 0;
 
-            löschObjektAusObjekteArray(grasFeld[0], grasFeld[1]);
+            löschObjektAusObjektArray(grasFeld[0], grasFeld[1]);
             this.zeile = grasFeld[0];
             this.spalte = grasFeld[1];
 
@@ -34,7 +40,7 @@ class RasenFresserTemplate {
     };
     spielzug() {
 
-        if (this.energie > 60 * window.globSpeed) {
+        if (this.energie > 60) {
             this.energie = 30;
             this.pflanzeNeuenRasenFresser();
         } else if (this.energie > 0) {
@@ -47,7 +53,7 @@ class RasenFresserTemplate {
             }
         } else {
             matrix[this.zeile][this.spalte] = 0;
-            löschObjektAusObjekteArray(this.zeile, this.spalte);
+            löschObjektAusObjektArray(this.zeile, this.spalte);
         }
         //this.machSchrittNachVorne();
     };
@@ -58,7 +64,7 @@ class RasenFresserTemplate {
         if (grasFelder.length > 0) {
             let grasFeld = grasFelder[0];
 
-            löschObjektAusObjekteArray(grasFeld[0], grasFeld[1]);
+            löschObjektAusObjektArray(grasFeld[0], grasFeld[1]);
 
             let neueGrasZelle = new RasenFresserTemplate(grasFeld[0], grasFeld[1]);
 

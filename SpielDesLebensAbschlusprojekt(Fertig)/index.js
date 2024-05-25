@@ -1,4 +1,5 @@
 const express = require("express");
+const { matrix } = require('./handleMatrix');
 
 const app = express();
 const port = 3000;
@@ -22,4 +23,8 @@ app.get("/google/:search", function(req, res){
 
 app.get('*', function(req, res){
     res.status(404).send("what??? There's something wrong...");
+});
+
+app.post('/getMatrix', (req, res) => {
+    res.send(JSON.stringify({ success: true, matrix: matrix }));
 });

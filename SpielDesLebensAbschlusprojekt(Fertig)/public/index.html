@@ -10,40 +10,40 @@
 
 <body>
     <script type='text/javascript'>
-        document.addEventListener('DOMContentLoaded', function () {
-            const globSpeedHandler = document.getElementById('globSpeedHandler');
-            const grasSpeedHandler = document.getElementById('grasSpeedHandler');
-            const citySpeedHandler = document.getElementById('citySpeedHandler');
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const globSpeedHandler = document.getElementById('globSpeedHandler');
+        //     const grasSpeedHandler = document.getElementById('grasSpeedHandler');
+        //     const citySpeedHandler = document.getElementById('citySpeedHandler');
 
-            window.globSpeed = 1;
-            window.globGrasSpeed = 1;
-            window.globCitySpeed = 1;
+        //     window.globSpeed = 1;
+        //     window.globGrasSpeed = 1;
+        //     window.globCitySpeed = 1;
 
-            function changeGlobSpeed(value) {
-                window.globSpeed = value;
-                window.globGrasSpeed = value;
-                window.globCitySpeed = value;
+        //     function changeGlobSpeed(value) {
+        //         window.globSpeed = value;
+        //         window.globGrasSpeed = value;
+        //         window.globCitySpeed = value;
 
-                console.log(value);
+        //         console.log(value);
 
-                if (grasSpeedHandler) {
-                    grasSpeedHandler.value = value;
-                }
-                if (citySpeedHandler) {
-                    citySpeedHandler.value = value;
-                }
-            }
+        //         if (grasSpeedHandler) {
+        //             grasSpeedHandler.value = value;
+        //         }
+        //         if (citySpeedHandler) {
+        //             citySpeedHandler.value = value;
+        //         }
+        //     }
 
-            globSpeedHandler.addEventListener('onchange', changeGlobSpeed);
-        });
+        //     globSpeedHandler.addEventListener('onchange', changeGlobSpeed);
+        // });
     </script>
     <!-- <script src="hilfsfunktionen.js"></script>
     <script src="ClassTemplate.js"></script>
     <script src="RasenFresser.js"></script>
     <script src="gras.js"></script>
     <script src="city.js"></script>
-    <script src="cityDestroyer.js"></script>
-    <script src="script.js"></script> -->
+    <script src="cityDestroyer.js"></script> -->
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 
     <div id="variableContainer">

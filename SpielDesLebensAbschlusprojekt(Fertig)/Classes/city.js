@@ -1,5 +1,5 @@
 const Template = require("./classTemplate");
-const { XY, RandomNumber1, matrix, löschObjektAusObjekteArray } = require("./script");
+let { XY, RandomNumber1, matrix, ObjekteArray, löschObjektAusObjektArray } = require("../handleMatrix");
 
 class CityTemplate extends Template {
     constructor(z, s, energie) {
@@ -12,14 +12,14 @@ class CityTemplate extends Template {
     };
     spielzug() {
         this.energie++
-        if (this.energie > 100 * (window.globSpeed === window.globCity? window.globSpeed : window.globCity)) {
+        if (this.energie > 100) {
             
             this.pflanzneueCity()
             this.energie = 0;
         } 
         // if (this.lebensEnergie >= 400) {
         //     this.lebensEnergie = 0;
-        //     löschObjektAusObjekteArray(this.zeile,this.spalte);
+        //     löschObjektAusObjektArray(this.zeile,this.spalte);
         //     matrix[this.zeile][this.spalte] = 0;
         // }
         // console.log(this.energie, this.lebensEnergie);
@@ -40,7 +40,7 @@ class CityTemplate extends Template {
 
             // matrix[this.zeile][this.spalte] = 0;
 
-            // löschObjektAusObjekteArray(grasFeld[0], grasFeld[1]);
+            // löschObjektAusObjektArray(grasFeld[0], grasFeld[1]);
 
             RandomNumber1 = Math.floor(Math.random() * grasFelder.length)
             let grasFeld = grasFelder[RandomNumber1]
@@ -51,7 +51,7 @@ class CityTemplate extends Template {
             // let grasFeld = grasFelder[0];
             let neueCity = new CityTemplate(grasFeld[0], grasFeld[1]);
 
-            löschObjektAusObjekteArray(grasFeld[0], grasFeld[1]);
+            löschObjektAusObjektArray(grasFeld[0], grasFeld[1]);
             
             ObjekteArray.push(neueCity);
 

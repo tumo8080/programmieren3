@@ -1,24 +1,25 @@
-let canvasXY = 900;
-let XY = 100;
-let matrix = [];
-let RandomNumber1;
-let RandomNumber2;
+let { canvasXY, XY, matrix, ObjekteArray } = require("./handleMatrix");
 
-let anzahlGras = 2;
-let ObjekteArray = [];
+const CityTemplate = require("./Classes/city");
+const CityDestroyerTemplate = require('./Classes/cityDestroyer');
+const GrasTemplate = require('./Classes/gras');
+const RasenFresserTemplate = require('./Classes/RasenFresser');
 
 function setup() {
-    createCanvas(canvasXY, canvasXY);
-    frameRate(60);
+    // createCanvas(canvasXY, canvasXY);
+    // frameRate(60);
     erstelleMatrix();
-    noStroke();
+    // noStroke();
+
+    ObjekteArray = [];
+    console.log('ObjekteArray => ' + ObjekteArray);
 
     ObjekteArray.push(new CityTemplate(50, 50));
 
     ObjekteArray.push(new CityDestroyerTemplate(20, 50));
     ObjekteArray.push(new CityDestroyerTemplate(80, 50));
 
-    ObjekteArray.push(new MowingMachineTemplate(25, 75));
+    ObjekteArray.push(new RasenFresserTemplate(25, 75));
 
     ObjekteArray.push(new GrasTemplate(50, 51));
     ObjekteArray.push(new GrasTemplate(51, 50));
@@ -54,7 +55,6 @@ function setup() {
     ObjekteArray.push(new GrasTemplate(27, 75));
     ObjekteArray.push(new GrasTemplate(27, 76));
     ObjekteArray.push(new GrasTemplate(27, 77));
-
 }
 
 function draw() {
@@ -64,25 +64,45 @@ function draw() {
     }
 
     zeichneMatrix();
+    // console.log('matrix => ' + matrix);
     //console.log(ObjekteArray.length)
 }
 
-function löschObjektAusObjekteArray(zeile, spalte) {
-    let index = ObjekteArray.findIndex(function (grasObjekt) {
-        if (grasObjekt.zeile === zeile && grasObjekt.spalte === spalte) {
-            return true;
-        } else return false;
-    });
-    ObjekteArray.splice(index, 1);
+function erstelleMatrix() {
+    let matrixTemp = [];
+    for (let zeile = 0; zeile < XY; zeile++) {
+        for (let spalte = 0; spalte < XY; spalte++) {
+            matrixTemp.push(0)
+
+        }
+        matrix.push(matrixTemp)
+        matrixTemp = [];
+    }
 }
 
-module.exports = {
-    löschObjektAusObjekteArray,
-    draw,
-    setup,
-    anzahlGras,
-    matrix,
-    XY,
-    RandomNumber1,
-    RandomNumber2,
+function zeichneMatrix() {
+    let aktivesArray = matrix;
+    let kästchenXY = canvasXY / aktivesArray.length;
+    for (let zeile = 0; zeile < XY; zeile++) {
+        for (let spalte = 0; spalte < XY; spalte++) {
+            element = matrix[zeile][spalte]
+            if (element === 0) {
+                process.stdout.write('\x1B[33m.'); // yellow
+            } else if (element === 1) {
+                process.stdout.write('\x1B[32mM'); // #03ab03
+            } else if (element === 2) {
+                process.stdout.write('\x1B[31mr'); // #E12213
+            } else if (element === 3) {
+                process.stdout.write('\x1B[37mx'); // #818285
+            } else if (element === 4) {
+                process.stdout.write('\x1B[30mb'); // #000
+            }
+            // rect(spalte * kästchenXY, zeile * kästchenXY, kästchenXY, kästchenXY)
+        }
+        process.stdout.write('\n');
+    }
+    process.stdout.write(`\x1B[${XY}A`);
 }
+
+setup();
+setInterval(draw, 100);
