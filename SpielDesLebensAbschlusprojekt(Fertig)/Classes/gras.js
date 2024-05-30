@@ -23,14 +23,14 @@ class GrasTemplate extends Template {
 
         if (erdeFelder.length > 0) {
             let erdeFeld = erdeFelder[0];
-            let neueGrasZelle = new GrasTemplate(erdeFeld[0], erdeFeld[1]);
+            let neueGrasZelle = new GrasTemplate(erdeFeld[0], erdeFeld[1], 0);
             ObjekteArray.push(neueGrasZelle);
             /* RandomNumber1 = Math.floor(Math.random() * erdeFelder.length)
             let erdeFeld = erdeFelder[RandomNumber1]
             matrix[this.zeile][this.spalte] = 1;
             this.zeile = erdeFeld[0];
             this.spalte = erdeFeld[1];
-            this.platziereSelbstInMatrix() */
+            this.platziereSelbstInMatrix(1) */
         }
     }
 

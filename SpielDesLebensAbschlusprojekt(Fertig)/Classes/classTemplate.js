@@ -8,6 +8,7 @@ class Template {
         this.platziereSelbstInMatrix();
     };
     platziereSelbstInMatrix(type) {
+        if (!matrix) console.error('no matrix');
         matrix[this.zeile][this.spalte] = type;
     };
 }

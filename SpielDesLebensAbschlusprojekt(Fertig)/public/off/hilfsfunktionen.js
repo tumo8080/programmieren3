@@ -28,6 +28,5 @@ function zeichneMatrix() {
             } 
             rect(spalte * kästchenXY, zeile * kästchenXY, kästchenXY, kästchenXY)
         }
-
     }
 }

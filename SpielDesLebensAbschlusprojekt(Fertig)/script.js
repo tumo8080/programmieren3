@@ -5,14 +5,15 @@ const CityDestroyerTemplate = require('./Classes/cityDestroyer');
 const GrasTemplate = require('./Classes/gras');
 const RasenFresserTemplate = require('./Classes/RasenFresser');
 
-function setup() {
+async function setup() {
+    console.log(new GrasTemplate(50, 51));
     // createCanvas(canvasXY, canvasXY);
     // frameRate(60);
-    erstelleMatrix();
+    await erstelleMatrix();
     // noStroke();
 
-    ObjekteArray = [];
-    console.log('ObjekteArray => ' + ObjekteArray);
+    // ObjekteArray = [];
+    // console.log('ObjekteArray => ' + ObjekteArray);
 
     ObjekteArray.push(new CityTemplate(50, 50));
 
@@ -78,30 +79,31 @@ function erstelleMatrix() {
         matrix.push(matrixTemp)
         matrixTemp = [];
     }
+    console.log(matrix);
 }
 
 function zeichneMatrix() {
-    let aktivesArray = matrix;
+    let aktivesArray = matrix; // mb use matrix.length
     let kästchenXY = canvasXY / aktivesArray.length;
     for (let zeile = 0; zeile < XY; zeile++) {
         for (let spalte = 0; spalte < XY; spalte++) {
             element = matrix[zeile][spalte]
             if (element === 0) {
-                process.stdout.write('\x1B[33m.'); // yellow
+                // process.stdout.write('\x1B[33m.'); // yellow
             } else if (element === 1) {
-                process.stdout.write('\x1B[32mM'); // #03ab03
+                // process.stdout.write('\x1B[32mM'); // #03ab03
             } else if (element === 2) {
-                process.stdout.write('\x1B[31mr'); // #E12213
+                // process.stdout.write('\x1B[31mr'); // #E12213
             } else if (element === 3) {
-                process.stdout.write('\x1B[37mx'); // #818285
+                // process.stdout.write('\x1B[37mx'); // #818285
             } else if (element === 4) {
-                process.stdout.write('\x1B[30mb'); // #000
+                // process.stdout.write('\x1B[30mb'); // #000
             }
             // rect(spalte * kästchenXY, zeile * kästchenXY, kästchenXY, kästchenXY)
         }
-        process.stdout.write('\n');
+        // process.stdout.write('\n');
     }
-    process.stdout.write(`\x1B[${XY}A`);
+    // process.stdout.write(`\x1B[${XY}A`);
 }
 
 function consoleLogMatrix() {

@@ -1,5 +1,5 @@
 const express = require("express");
-const { matrix } = require('./handleMatrix');
+const { matrix, XY, canvasXY } = require('./handleMatrix');
 const { setup, draw } = require('./script');
 
 const app = express();
@@ -13,7 +13,7 @@ let interval;
 app.use(express.static('public'));
 app.use(express.json());
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server läuft auf http://localhost:${port}`);
 });
 
@@ -40,18 +40,14 @@ io.on('connection', (socket) => {
         clearInterval(interval);
     });
 
+    socket.emit('vars', { xy: XY, canvas: canvasXY })
+
     setup();
     interval = setInterval(() => {
         draw();
         socket.emit('matrix', matrix);
     }, 30);
 });
-
-function transformMatrix(matrix) {
-    // Wenn ihr Zahlen in der Matrix habt, können sie hier in Farben umgewandelt werden
-    // ...
-    return newMatrix
-}
 
 // Event Blitz etc bei btn klick
 // geschlecht für ein Classes
