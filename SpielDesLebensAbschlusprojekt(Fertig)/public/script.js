@@ -1,8 +1,10 @@
-async function getMatrix() {
-    try {
-        const response = await fetch('/getMatrix');
-        console.log("Download complete", response);
-    } catch (error) {
-        console.error(`Download error: ${error.message}`);
-    }
+const socket = io();
+const cellSize = 20;
+
+function setup() {
+    createCanvas(100, 100);
 }
+
+socket.on('matrix', (matrix) => {
+    console.log(matrix);
+});
