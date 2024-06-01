@@ -14,16 +14,9 @@ socket.on('vars', ({ xy, canvas }) => {
     canvasXY = canvas;
 })
 
-socket.on('matrix', (matrix) => {
-    // // Die Matrix wird auf den Bildschirm gezeichnet.
-    // for (let i = 0; i < matrix.length; i++) {
-    //     for (let j = 0; j < matrix[i].length; j++) {
-    //         fill(matrix[i][j]); 
-    //         rect(j * cellSize, i * cellSize, cellSize, cellSize);
-    //     }
-    // }
-    // console.log(XY, canvasXY);
+let c = 0;
 
+socket.on('matrix', (matrix) => {
     let aktivesArray = matrix
     let kästchenXY = canvasXY / aktivesArray.length;
     for (let zeile = 0; zeile < XY; zeile++) {

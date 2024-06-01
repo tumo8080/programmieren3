@@ -17,24 +17,24 @@ server.listen(port, () => {
     console.log(`Server läuft auf http://localhost:${port}`);
 });
 
-app.get("/user/:name", function(req, res){
+app.get("/user/:name", function (req, res) {
     const name = req.params.name;
-    res.send("<h1>Hello " + name +"</h1>");
+    res.send("<h1>Hello " + name + "</h1>");
 });
 
-app.get("/google/:search", function(req, res){
+app.get("/google/:search", function (req, res) {
     const search = req.params.search;
     res.redirect(`https://www.google.com/search?q=${search}`);
 });
 
-app.get('*', function(req, res){
+app.get('*', function (req, res) {
     res.status(404).send("what??? There's something wrong...");
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('\x1B[32ma user connected\x1B[37m');
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log('\x1B[31muser disconnected\x1B[37m');
 
         // wir stoppen das Spiel, wenn der Benutzer die Verbindung trennt
         clearInterval(interval);

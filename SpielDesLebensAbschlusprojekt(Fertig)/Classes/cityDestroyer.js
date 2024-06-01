@@ -1,4 +1,5 @@
 const Template = require("./classTemplate");
+const GrasTemplate = require('./gras');
 let { XY, RandomNumber2, ObjekteArray, matrix, löschObjektAusObjektArray } = require("../handleMatrix");
 
 class CityDestroyerTemplate extends Template {

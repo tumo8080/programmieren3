@@ -5,13 +5,12 @@ const CityDestroyerTemplate = require('./Classes/cityDestroyer');
 const GrasTemplate = require('./Classes/gras');
 const RasenFresserTemplate = require('./Classes/RasenFresser');
 
-async function setup() {
-    console.log(new GrasTemplate(50, 51));
+function setup() {
+
     // createCanvas(canvasXY, canvasXY);
     // frameRate(60);
-    await erstelleMatrix();
+    erstelleMatrix();
     // noStroke();
-
     // ObjekteArray = [];
     // console.log('ObjekteArray => ' + ObjekteArray);
 
@@ -62,9 +61,11 @@ function draw() {
 
     for (let i = 0; i < ObjekteArray.length; i++) {
         ObjekteArray[i].spielzug();
-    }
+    }  
 
-    zeichneMatrix();
+    // process.stdout.write("d");
+
+    // zeichneMatrix();
     // console.log('matrix => ' + matrix);
     //console.log(ObjekteArray.length)
 }
@@ -74,12 +75,11 @@ function erstelleMatrix() {
     for (let zeile = 0; zeile < XY; zeile++) {
         for (let spalte = 0; spalte < XY; spalte++) {
             matrixTemp.push(0)
-
         }
         matrix.push(matrixTemp)
         matrixTemp = [];
     }
-    console.log(matrix);
+    // console.log("matrix" + matrix);
 }
 
 function zeichneMatrix() {
@@ -88,6 +88,7 @@ function zeichneMatrix() {
     for (let zeile = 0; zeile < XY; zeile++) {
         for (let spalte = 0; spalte < XY; spalte++) {
             element = matrix[zeile][spalte]
+            process.stdout.write(element);
             if (element === 0) {
                 // process.stdout.write('\x1B[33m.'); // yellow
             } else if (element === 1) {
@@ -98,6 +99,8 @@ function zeichneMatrix() {
                 // process.stdout.write('\x1B[37mx'); // #818285
             } else if (element === 4) {
                 // process.stdout.write('\x1B[30mb'); // #000
+            } else {
+                process.stdout.write('no element');
             }
             // rect(spalte * kästchenXY, zeile * kästchenXY, kästchenXY, kästchenXY)
         }

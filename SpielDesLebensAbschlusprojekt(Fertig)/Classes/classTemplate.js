@@ -5,7 +5,6 @@ class Template {
         this.zeile = z;
         this.spalte = s;
         this.energie = energie;
-        this.platziereSelbstInMatrix();
     };
     platziereSelbstInMatrix(type) {
         if (!matrix) console.error('no matrix');
