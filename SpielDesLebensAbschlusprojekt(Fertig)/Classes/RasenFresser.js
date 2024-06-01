@@ -1,4 +1,5 @@
 let {
+    data,
     XY,
     matrix,
     RandomNumber2,
@@ -14,6 +15,7 @@ class RasenFresserTemplate {
         this.zeile = z;
         this.spalte = s;
         this.platziereSelbstInMatrix();
+        data.rassen_fresser.created++;
     };
     platziereSelbstInMatrix() {
         matrix[this.zeile][this.spalte] = 2;

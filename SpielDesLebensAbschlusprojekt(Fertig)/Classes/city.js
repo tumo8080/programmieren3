@@ -1,5 +1,5 @@
 const Template = require("./classTemplate");
-let { XY, RandomNumber1, matrix, ObjekteArray, löschObjektAusObjektArray } = require("../handleMatrix");
+let { XY, RandomNumber1, matrix, ObjekteArray, löschObjektAusObjektArray, data } = require("../handleMatrix");
 
 class CityTemplate extends Template {
     constructor(z, s, energie) {
@@ -9,6 +9,7 @@ class CityTemplate extends Template {
         this.energie = 0;
         this.lebensEnergie = 0;
         this.platziereSelbstInMatrix(3);
+        data.city.created++;
     };
     spielzug() {
         this.energie++

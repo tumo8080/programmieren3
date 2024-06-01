@@ -1,5 +1,6 @@
 const express = require("express");
-const { matrix, XY, canvasXY } = require('./handleMatrix');
+const { matrix, XY, canvasXY, data } = require('./handleMatrix');
+const { commitData, countLivings } = require('./handleFS');
 const { setup, draw } = require('./script');
 
 const app = express();
@@ -45,9 +46,13 @@ io.on('connection', (socket) => {
     setup();
     interval = setInterval(() => {
         draw();
+        countLivings();
         socket.emit('matrix', matrix);
+        commitData();
+        socket.emit('data', data);
     }, 30);
 });
+
 
 // Event Blitz etc bei btn klick
 // geschlecht für ein Classes

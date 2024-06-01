@@ -1,6 +1,6 @@
 const Template = require("./classTemplate");
 const GrasTemplate = require('./gras');
-let { XY, RandomNumber2, ObjekteArray, matrix, löschObjektAusObjektArray } = require("../handleMatrix");
+let { XY, RandomNumber2, ObjekteArray, matrix, löschObjektAusObjektArray, data } = require("../handleMatrix");
 
 class CityDestroyerTemplate extends Template {
     constructor(z, s, energie) {
@@ -10,6 +10,7 @@ class CityDestroyerTemplate extends Template {
         this.energie = 0;
         this.lebensEnergie = 0;
         this.platziereSelbstInMatrix(4);
+        data.city_destroyer.created++;
     };
     machSchrittNachVorne() {
         // 1. Scan die Felder um dich herum und
@@ -20,22 +21,22 @@ class CityDestroyerTemplate extends Template {
             RandomNumber2 = Math.floor(Math.random() * CityFelder.length)
             let CityFeld = CityFelder[RandomNumber2]
 
-            matrix[this.zeile][this.spalte] = 1;
-            ObjekteArray.push(new GrasTemplate(this.zeile,this.spalte));
+            matrix[this.zeile][this.spalte] = 0;
+            // ObjekteArray.push(new GrasTemplate(this.zeile,this.spalte));
 
             löschObjektAusObjektArray(CityFeld[0], CityFeld[1]);
             this.zeile = CityFeld[0];
             this.spalte = CityFeld[1];
 
-            this.platziereSelbstInMatrix()
+            this.platziereSelbstInMatrix(4);
+            data.city_destroyer.destroied_citys++;
         }
     };
     spielzug() {
 
         if (this.energie >= 300) {
             this.energie = 0;
-            matrix[this.zeile][this.spalte] = 1;
-            ObjekteArray.push(new GrasTemplate(this.zeile,this.spalte));
+            matrix[this.zeile][this.spalte] = 0;
 
             this.machEinSchrit();
             // löschObjektAusObjektArray(this.zeile,this.spalte);

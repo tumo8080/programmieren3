@@ -17,7 +17,7 @@ socket.on('vars', ({ xy, canvas }) => {
 let c = 0;
 
 socket.on('matrix', (matrix) => {
-    let aktivesArray = matrix
+    let aktivesArray = matrix;
     let kästchenXY = canvasXY / aktivesArray.length;
     for (let zeile = 0; zeile < XY; zeile++) {
         for (let spalte = 0; spalte < XY; spalte++) {
@@ -36,4 +36,31 @@ socket.on('matrix', (matrix) => {
             rect(spalte * kästchenXY, zeile * kästchenXY, kästchenXY, kästchenXY)
         }
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const gras = document.getElementById('gras');
+    const city = document.getElementById('city');
+    const rasenFresser = document.getElementById('rasen-fresser');
+    const cityDestroyer = document.getElementById('city-destroyer');
+    
+    console.log(gras.children);
+    console.log(city);
+    console.log(rasenFresser);
+    console.log(cityDestroyer);
+
+    socket.on('data', (data) => {
+        gras.children[1].innerHTML = data.gras.created;
+        gras.children[2].innerHTML = data.gras.living;
+
+        city.children[1].innerHTML = data.city.created;
+        city.children[2].innerHTML = data.city.living;
+
+        rasenFresser.children[1].innerHTML = data.rasen_fresser.created;
+        rasenFresser.children[2].innerHTML = data.rasen_fresser.living;
+
+        cityDestroyer.children[1].innerHTML = data.city_destroyer.created;
+        cityDestroyer.children[2].innerHTML = data.city_destroyer.living;
+        cityDestroyer.children[2].innerHTML = data.city_destroyer.destroied_citys;
+    });
 });
