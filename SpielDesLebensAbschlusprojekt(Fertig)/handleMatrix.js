@@ -10,10 +10,24 @@ let RandomNumber2;
 let anzahlGras = 2;
 let ObjekteArray = [];
 
+let wetter = {
+  current: "winter",
+  options: ["winter", "sommer"]
+}
+
+const colors = {
+  winter: {
+    0: "yellow", 1: "#03ab03", 2: "#E12213", 3: "#818285", 4: "#ff0"
+  },
+  sommer: {
+    0: "yellow", 1: "#03ab03", 2: "#E12213", 3: "#818285", 4: "#000"
+  }
+};
+
 // data
 let data = {
   gras: { created: 0, living: 0 },
-  rassen_fresser: { created: 0, living: 0 },
+  rasen_fresser: { created: 0, living: 0 },
   city: { created: 0, living: 0 },
   city_destroyer: { created: 0, living: 0, destroied_citys: 0 },
 };
@@ -37,5 +51,7 @@ module.exports = {
   RandomNumber2,
   anzahlGras,
   ObjekteArray,
+  wetter,
+  colors,
   löschObjektAusObjektArray,
 };

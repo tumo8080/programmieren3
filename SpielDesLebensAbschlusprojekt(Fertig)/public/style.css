@@ -31,3 +31,9 @@ main {
 .no-data {
     color: #666;
 }
+
+#wetter {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}

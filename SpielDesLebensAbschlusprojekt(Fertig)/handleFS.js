@@ -1,17 +1,38 @@
 const { data, matrix, XY } = require("./handleMatrix");
 const fs = require("fs");
 
-function commitData() {
-  fs.writeFile("./data.json", JSON.stringify(data), function (err) {
-    if (err) throw err;
-    // console.log("Saved!");
+function commitData(user) {
+  if (!user) return console.error("no user found");
+
+  fs.readFile("./data.json", "utf8", function (err, d) {
+    if (err) {
+      return console.error(err);
+    }
+
+    let current;
+    try {
+      current = JSON.parse(d);
+    } catch (err) {
+      return console.error(err);
+    }
+
+    current[user] = data;
+
+    // console.log(current);
+
+    fs.writeFile("./data.json", JSON.stringify(current), function (err) {
+      if (err) {
+        return console.error(err);
+      }
+      // console.log("Data saved!");
+    });
   });
 }
 
 function countLivings() {
   let aktivesArray = matrix;
   let gras = 0,
-    rassen_fresser = 0,
+    rasen_fresser = 0,
     city = 0,
     city_destroyer = 0;
   for (let zeile = 0; zeile < XY; zeile++) {
@@ -21,8 +42,8 @@ function countLivings() {
         gras++;
         // data.gras.living++;
       } else if (element === 2) {
-        rassen_fresser++;
-        // data.rassen_fresser.living++;
+        rasen_fresser++;
+        // data.rasen_fresser.living++;
       } else if (element === 3) {
         city++;
         // data.city.living++;
@@ -35,7 +56,7 @@ function countLivings() {
   data.gras.living = gras;
   data.city.living = city;
   data.city_destroyer.living = city_destroyer;
-  data.rassen_fresser.living = rassen_fresser;
+  data.rasen_fresser.living = rasen_fresser;
 }
 
 module.exports = { commitData, countLivings };

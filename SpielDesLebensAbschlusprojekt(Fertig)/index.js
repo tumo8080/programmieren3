@@ -1,5 +1,5 @@
 const express = require("express");
-const { matrix, XY, canvasXY, data } = require('./handleMatrix');
+const { matrix, XY, canvasXY, data, wetter, colors } = require('./handleMatrix');
 const { commitData, countLivings } = require('./handleFS');
 const { setup, draw } = require('./script');
 
@@ -32,6 +32,8 @@ app.get('*', function (req, res) {
     res.status(404).send("what??? There's something wrong...");
 });
 
+let counter = 0;
+
 io.on('connection', (socket) => {
     console.log('\x1B[32ma user connected\x1B[37m');
     socket.on('disconnect', () => {
@@ -41,15 +43,36 @@ io.on('connection', (socket) => {
         clearInterval(interval);
     });
 
-    socket.emit('vars', { xy: XY, canvas: canvasXY })
+    socket.emit('vars', { xy: XY, canvas: canvasXY, wetter: wetter.current })
 
     setup();
     interval = setInterval(() => {
         draw();
         countLivings();
-        socket.emit('matrix', matrix);
-        commitData();
+        socket.emit('matrix', {matrix, colors});
+        commitData(socket.id);
         socket.emit('data', data);
+
+        socket.emit('wetter', wetter.current);
+
+        if (counter === 1000) {
+            var newWetter;
+            var index = 0;
+            wetter.options.forEach((e, i) => {
+                if (e === wetter.current) {
+                    index = i + 1;
+                }
+            });
+
+            if (wetter.options[index]) newWetter = wetter.options[index];
+            else newWetter = wetter.options[0];
+
+            wetter.current = newWetter;
+
+            console.log(wetter.current);
+
+            counter = 0;
+        } else counter++;
     }, 30);
 });
 
