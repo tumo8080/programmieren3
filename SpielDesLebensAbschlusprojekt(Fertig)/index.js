@@ -48,7 +48,6 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("\x1B[31muser disconnected\x1B[37m");
 
-    // wir stoppen das Spiel, wenn der Benutzer die Verbindung trennt
     clearInterval(interval);
   });
 
