@@ -55,7 +55,7 @@ class RasenFresserTemplate {
       } else {
         this.energie--;
       }
-    } else {
+    } else {  
       matrix[this.zeile][this.spalte] = 0;
       löschObjektAusObjektArray(this.zeile, this.spalte);
     }

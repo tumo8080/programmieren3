@@ -15,17 +15,21 @@ function commitData(user) {
     }
 
     let current;
-    try {
-      current = JSON.parse(d);
-    } catch (err) {
-      return console.error(err);
+    if (!d || d.trim() === "") {
+      current = {}; 
+    } else {
+      try {
+        current = JSON.parse(d);
+      } catch (err) {
+        console.error("Failed to parse JSON:", err);
+        console.error("Contents of d:", d); 
+        return;
+      }
     }
 
     current[user] = data;
 
-    // console.log(current);
-
-    fs.writeFile("./data.json", JSON.stringify(current), function (err) {
+    fs.writeFile("./data.json", JSON.stringify(current, null, 2), function (err) { // Formatting JSON for readability
       if (err) {
         return console.error(err);
       }
@@ -42,7 +46,7 @@ function countLivings() {
     city_destroyer = 0;
   for (let zeile = 0; zeile < XY; zeile++) {
     for (let spalte = 0; spalte < XY; spalte++) {
-      element = aktivesArray[zeile][spalte];
+      let element = aktivesArray[zeile][spalte]; // Added let to declare element
       if (element === 1) {
         gras++;
         // data.gras.living++;
