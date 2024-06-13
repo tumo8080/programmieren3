@@ -4,6 +4,11 @@ const fs = require("fs");
 function commitData(user) {
   if (!user) return console.error("no user found");
 
+  data.gras.dead = data.gras.created - data.gras.living;
+  data.rasen_fresser.dead = data.rasen_fresser.created - data.rasen_fresser.living;
+  data.city.dead = data.city.created - data.city.living;
+  data.city_destroyer.dead = data.city_destroyer.created - data.city_destroyer.living;
+
   fs.readFile("./data.json", "utf8", function (err, d) {
     if (err) {
       return console.error(err);

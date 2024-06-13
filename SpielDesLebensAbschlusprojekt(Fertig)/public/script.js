@@ -1,9 +1,9 @@
 const socket = io();
-const wetterElement = document.getElementById("wetter");
 
 let XY;
 let canvasXY;
 let wetter = "sommer";
+let process = 0;
 
 socket.on("vars", ({ xy, canvas, wetter }) => {
   XY = xy;
@@ -11,8 +11,9 @@ socket.on("vars", ({ xy, canvas, wetter }) => {
   wetter = wetter;
 });
 
-socket.on('wetter', (w) => {
-    wetter = w;
+socket.on('wetter', ({w, wetterProcess}) => {
+  wetter = w;
+  process = wetterProcess;
 });
 
 function setup() {
@@ -48,22 +49,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const city = document.getElementById("city");
   const rasenFresser = document.getElementById("rasen-fresser");
   const cityDestroyer = document.getElementById("city-destroyer");
+  const wetterElement = document.getElementById("wetter");
+
+  setInterval(() => {
+    wetterElement.innerHTML = wetter + ` (${process}%)`;
+  }, 100);
 
   socket.on("data", (data) => {
     gras.children[1].innerText = data.gras.created;
     gras.children[2].innerText = data.gras.living;
+    gras.children[3].innerText = data.gras.dead;
 
     city.children[1].innerText = data.city.created;
     city.children[2].innerText = data.city.living;
+    city.children[3].innerText = data.city.dead;
 
     cityDestroyer.children[1].innerText = data.city_destroyer.created;
     cityDestroyer.children[2].innerText = data.city_destroyer.living;
-    cityDestroyer.children[3].innerText = data.city_destroyer.destroied_citys;
+    cityDestroyer.children[4].innerText = data.city_destroyer.destroied_citys;
 
     // console.log(cityDestroyer.children[2].innerText);
 
     rasenFresser.children[1].innerText = data.rasen_fresser.created;
     rasenFresser.children[2].innerText = data.rasen_fresser.living;
+    rasenFresser.children[3].innerText = data.rasen_fresser.dead;
   });
 });
 

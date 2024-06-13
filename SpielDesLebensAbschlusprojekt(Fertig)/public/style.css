@@ -1,6 +1,6 @@
 body{
     background-color: rgb(41, 38, 38);
-    color: ivory;   
+    color: ivory;
     font-family: sans-serif;
 }
 
@@ -35,5 +35,5 @@ main {
 #wetter {
     position: fixed;
     right: 10px;
-    bottom: 10px;
+    top: 200px;
 }

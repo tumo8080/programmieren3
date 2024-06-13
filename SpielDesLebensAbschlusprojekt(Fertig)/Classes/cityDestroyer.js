@@ -38,7 +38,7 @@ class CityDestroyerTemplate extends Template {
     }
   }
   spielzug() {
-    if (this.energie >= 300) {
+    if (this.energie >= (wetter.current === "winter" ? 350 : 300)) {
       this.energie = 0;
       matrix[this.zeile][this.spalte] = 0;
 

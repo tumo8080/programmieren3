@@ -10,26 +10,54 @@ let RandomNumber2;
 let anzahlGras = 2;
 let ObjekteArray = [];
 
+let wetterProcess = 0;
+let changewetter = 1000;
+
 let wetter = {
-  current: "winter",
-  options: ["winter", "sommer"]
-}
+  current: "sommer",
+  options: ["winter", "sommer"],
+};
 
 const colors = {
   winter: {
-    0: "yellow", 1: "#03ab03", 2: "#E12213", 3: "#818285", 4: "#ff0"
+    0: "#6F4E37",
+    1: "#fefefe",
+    2: "#8B0000",
+    3: "#777",
+    4: "#000080",
   },
   sommer: {
-    0: "yellow", 1: "#03ab03", 2: "#E12213", 3: "#818285", 4: "#000"
-  }
+    0: "#FFD700",
+    1: "#32CD32",
+    2: "#FF4500",
+    3: "#7d7d7d",
+    4: "#000",
+  },
 };
+
+// const colors = {
+//   winter: {
+//     0: "#A9A9A9", 
+//     1: "#556B2F", 
+//     2: "#8B0000", 
+//     3: "#708090", 
+//     4: "#000080", 
+//   },
+//   sommer: {
+//     0: "#D2B48C", 
+//     1: "#32CD32", 
+//     2: "#FF4500", 
+//     3: "#808080", 
+//     4: "#FF6347", 
+//   },
+// };
 
 // data
 let data = {
-  gras: { created: 0, living: 0 },
-  rasen_fresser: { created: 0, living: 0 },
-  city: { created: 0, living: 0 },
-  city_destroyer: { created: 0, living: 0, destroied_citys: 0 },
+  gras: { created: 0, living: 0, dead: 0 },
+  rasen_fresser: { created: 0, living: 0, dead: 0 },
+  city: { created: 0, living: 0, dead: 0 },
+  city_destroyer: { created: 0, living: 0, destroied_citys: 0, dead: 0 },
 };
 
 function löschObjektAusObjektArray(zeile, spalte) {
@@ -53,5 +81,7 @@ module.exports = {
   ObjekteArray,
   wetter,
   colors,
+  changewetter,
+  wetterProcess,
   löschObjektAusObjektArray,
 };

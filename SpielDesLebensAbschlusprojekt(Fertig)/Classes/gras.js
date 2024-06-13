@@ -12,7 +12,7 @@ class GrasTemplate extends Template {
   }
   spielzug() {
     this.energie++;
-    if (this.energie > 5) {
+    if (this.energie > (wetter.current === "winter" ? 7 : 5)) {
       this.pflanzNeueGrasZelle();
       this.energie = 0;
     }

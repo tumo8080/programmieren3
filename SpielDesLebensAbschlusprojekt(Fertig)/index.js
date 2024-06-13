@@ -1,5 +1,6 @@
 const express = require("express");
-const { matrix, XY, canvasXY, data, wetter, colors } = require('./handleMatrix');
+const { matrix, XY, canvasXY, data, wetter, colors, changewetter } = require('./handleMatrix');
+let { wetterProcess } = require('./handleMatrix');
 const { commitData, countLivings } = require('./handleFS');
 const { setup, draw } = require('./script');
 
@@ -53,9 +54,9 @@ io.on('connection', (socket) => {
         commitData(socket.id);
         socket.emit('data', data);
 
-        socket.emit('wetter', wetter.current);
+        socket.emit('wetter', {w: wetter.current, wetterProcess: wetterProcess});
 
-        if (counter === 1000) {
+        if (counter === changewetter) {
             var newWetter;
             var index = 0;
             wetter.options.forEach((e, i) => {
@@ -69,10 +70,11 @@ io.on('connection', (socket) => {
 
             wetter.current = newWetter;
 
-            console.log(wetter.current);
-
             counter = 0;
-        } else counter++;
+        } else {
+            counter++;
+            wetterProcess = counter / (changewetter / 100);
+        };
     }, 30);
 });
 

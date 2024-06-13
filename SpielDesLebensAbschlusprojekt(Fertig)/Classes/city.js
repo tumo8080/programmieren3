@@ -13,11 +13,17 @@ class CityTemplate extends Template {
     };
     spielzug() {
         this.energie++
-        if (this.energie > 100) {
+        if (this.energie > (wetter.current === "winter" ? 200 : 100)) {
             
             this.pflanzneueCity()
             this.energie = 0;
         } 
+        if (this.lebensEnergie >= (wetter.current === "winter" ? 400 : 600)) {
+            this.lebensEnergie = 0;
+            matrix[this.zeile][this.spalte] = 1;
+            löschObjektAusObjektArray(this.zeile, this.spalte);
+        }
+        this.lebensEnergie++;
     };
     pflanzneueCity () {
         let grasFelder = this.findeGrasFelder();

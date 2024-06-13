@@ -15,6 +15,7 @@ class RasenFresserTemplate {
   constructor(z, s) {
     this.zeile = z;
     this.spalte = s;
+    this.count = 0;
     this.platziereSelbstInMatrix();
     data.rasen_fresser.created++;
   }
@@ -40,14 +41,17 @@ class RasenFresserTemplate {
     }
   }
   spielzug() {
-    if (this.energie > 60) {
+    if (this.energie > (wetter.current === "winter" ? 200 : 60)) {
       this.energie = 30;
       this.pflanzeNeuenRasenFresser();
     } else if (this.energie > 0) {
       let grasFelder = this.findeGrasFelder();
       if (grasFelder.length > 0) {
         this.energie++;
-        this.machSchrittNachVorne();
+        if (this.count === (wetter.current === "winter" ? 5 : 0)) {
+          this.machSchrittNachVorne();
+          this.count++
+        } else this.count = 0;
       } else {
         this.energie--;
       }
