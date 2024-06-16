@@ -47,13 +47,14 @@ class RasenFresserTemplate {
     } else if (this.energie > 0) {
       let grasFelder = this.findeGrasFelder();
       if (grasFelder.length > 0) {
-        this.energie++;
-        if (this.count === (wetter.current === "winter" ? 5 : 0)) {
-          this.machSchrittNachVorne();
+        this.energie = this.energie + (wetter.current === "winter" ? 0.25 : 1);
+        if (this.count === 0) {
+          if (!!(this.energie % 1)) return;
+          if (wetter.current === "winter" ? this.energie % 2 : true) this.machSchrittNachVorne();
           this.count++
         } else this.count = 0;
       } else {
-        this.energie--;
+        this.energie = this.energie - (wetter.current === "winter" ? 4 : 1);
       }
     } else {  
       matrix[this.zeile][this.spalte] = 0;

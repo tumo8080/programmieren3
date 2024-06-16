@@ -9,7 +9,7 @@ const {
   changewetter,
 } = require("./handleMatrix");
 let { wetterProcess } = require("./handleMatrix");
-const { commitData, countLivings } = require("./handleFS");
+const { commitData, countLivings, deleteUserData } = require("./handleFS");
 const { setup, draw } = require("./script");
 
 const app = express();
@@ -48,6 +48,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("\x1B[31muser disconnected\x1B[37m");
 
+    deleteUserData(socket.id, 2000);
     clearInterval(interval);
   });
 

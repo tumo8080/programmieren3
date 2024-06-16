@@ -68,7 +68,12 @@ class CityDestroyerTemplate extends Template {
     }
   }
   findeCityFelder() {
-    let benachbarteFelder = [];
+    let benachbarteFelder = [
+      [this.zeile + 1, this.spalte],
+      [this.zeile - 1, this.spalte],
+      [this.zeile, this.spalte + 1],
+      [this.zeile, this.spalte - 1],
+    ];
 
     let CityFelder = benachbarteFelder.filter(this.istCity);
     return CityFelder;
